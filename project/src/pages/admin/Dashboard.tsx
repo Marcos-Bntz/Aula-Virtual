@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Users, BookOpen, Award, BarChart2, Plus } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
-// Types
+// Tipos
 interface StatCard {
   title: string;
   value: number;
@@ -25,68 +25,68 @@ const AdminDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating API calls
+    // Simulando llamadas a la API
     const fetchData = async () => {
       try {
         setTimeout(() => {
-          // Mock stats data
+          // Datos de estadísticas simulados
           const mockStats: StatCard[] = [
             {
-              title: 'Total Students',
+              title: 'Total de Estudiantes',
               value: 120,
               icon: <Users className="h-6 w-6" />,
               color: 'bg-blue-500'
             },
             {
-              title: 'Total Courses',
+              title: 'Total de Cursos',
               value: 24,
               icon: <BookOpen className="h-6 w-6" />,
               color: 'bg-green-500'
             },
             {
-              title: 'Assignments',
+              title: 'Asignaciones',
               value: 56,
               icon: <Award className="h-6 w-6" />,
               color: 'bg-purple-500'
             },
             {
-              title: 'Average Grade',
+              title: 'Calificación Promedio',
               value: 85,
               icon: <BarChart2 className="h-6 w-6" />,
               color: 'bg-orange-500'
             }
           ];
 
-          // Mock recent activity
+          // Actividad reciente simulada
           const mockActivity: RecentActivity[] = [
             {
               id: '1',
               type: 'course_created',
-              description: 'New course "Advanced Physics" was created',
+              description: 'Se creó el nuevo curso "Física Avanzada"',
               date: '2023-06-15T10:30:00'
             },
             {
               id: '2',
               type: 'grade_updated',
-              description: 'Grades updated for "Introduction to Mathematics"',
+              description: 'Calificaciones actualizadas para "Introducción a las Matemáticas"',
               date: '2023-06-14T14:45:00'
             },
             {
               id: '3',
               type: 'user_registered',
-              description: 'New student Sarah Johnson registered',
+              description: 'Se registró la nueva estudiante Sarah Johnson',
               date: '2023-06-13T09:15:00'
             },
             {
               id: '4',
               type: 'grade_updated',
-              description: 'Grades updated for "English Literature"',
+              description: 'Calificaciones actualizadas para "Literatura Inglesa"',
               date: '2023-06-12T16:20:00'
             },
             {
               id: '5',
               type: 'course_created',
-              description: 'New course "Web Development Fundamentals" was created',
+              description: 'Se creó el nuevo curso "Fundamentos de Desarrollo Web"',
               date: '2023-06-10T11:05:00'
             }
           ];
@@ -96,7 +96,7 @@ const AdminDashboard: React.FC = () => {
           setLoading(false);
         }, 1000);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error al obtener datos:', error);
         setLoading(false);
       }
     };
@@ -126,14 +126,14 @@ const AdminDashboard: React.FC = () => {
     <div className="bg-gray-50 min-h-[calc(100vh-8rem)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Panel de Administración</h1>
           <div className="flex space-x-4">
             <Link
               to="/admin/courses"
               className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             >
               <Plus className="h-4 w-4 mr-2" />
-              New Course
+              Nuevo Curso
             </Link>
           </div>
         </div>
@@ -144,7 +144,7 @@ const AdminDashboard: React.FC = () => {
           </div>
         ) : (
           <>
-            {/* Stats Cards */}
+            {/* Tarjetas de Estadísticas */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {stats.map((stat, index) => (
                 <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -166,7 +166,7 @@ const AdminDashboard: React.FC = () => {
                   <div className="bg-gray-50 px-5 py-3">
                     <div className="text-sm">
                       <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                        View all
+                        Ver todo
                       </a>
                     </div>
                   </div>
@@ -174,10 +174,10 @@ const AdminDashboard: React.FC = () => {
               ))}
             </div>
 
-            {/* Quick Links */}
+            {/* Enlaces Rápidos */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden mb-8">
               <div className="px-6 py-4 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-800">Quick Actions</h2>
+                <h2 className="text-lg font-semibold text-gray-800">Acciones Rápidas</h2>
               </div>
               <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <Link
@@ -185,29 +185,29 @@ const AdminDashboard: React.FC = () => {
                   className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                 >
                   <BookOpen className="h-5 w-5 mr-2 text-blue-600" />
-                  Manage Courses
+                  Gestionar Cursos
                 </Link>
                 <Link
                   to="/admin/users"
                   className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                 >
                   <Users className="h-5 w-5 mr-2 text-blue-600" />
-                  Manage Users
+                  Gestionar Usuarios
                 </Link>
                 <Link
                   to="#"
                   className="flex items-center justify-center px-4 py-3 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
                 >
                   <Award className="h-5 w-5 mr-2 text-blue-600" />
-                  Manage Grades
+                  Gestionar Calificaciones
                 </Link>
               </div>
             </div>
 
-            {/* Recent Activity */}
+            {/* Actividad Reciente */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="px-6 py-4 border-b border-gray-200">
-                <h2 className="text-lg font-semibold text-gray-800">Recent Activity</h2>
+                <h2 className="text-lg font-semibold text-gray-800">Actividad Reciente</h2>
               </div>
               <div className="p-6">
                 <ul className="divide-y divide-gray-200">
@@ -229,7 +229,7 @@ const AdminDashboard: React.FC = () => {
               <div className="bg-gray-50 px-5 py-3">
                 <div className="text-sm">
                   <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                    View all activity
+                    Ver toda la actividad
                   </a>
                 </div>
               </div>

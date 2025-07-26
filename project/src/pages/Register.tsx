@@ -16,26 +16,26 @@ const Register: React.FC = () => {
     e.preventDefault();
     setFormError('');
     
-    // Basic validation
+    // Validación básica
     if (!name || !email || !password || !confirmPassword) {
-      setFormError('Please fill in all fields');
+      setFormError('Por favor, rellene todos los campos');
       return;
     }
 
     if (password !== confirmPassword) {
-      setFormError('Passwords do not match');
+      setFormError('Las contraseñas no coinciden');
       return;
     }
 
     if (password.length < 6) {
-      setFormError('Password must be at least 6 characters');
+      setFormError('La contraseña debe tener al menos 6 caracteres');
       return;
     }
 
     try {
       await register(name, email, password, role);
     } catch (err) {
-      // Error is handled in AuthContext
+      // El error se maneja en AuthContext
     }
   };
 
@@ -46,11 +46,11 @@ const Register: React.FC = () => {
           <div className="flex justify-center">
             <BookOpen className="h-12 w-12 text-blue-600" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Create a new account</h2>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Crea una nueva cuenta</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
+            O{' '}
             <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-              sign in to your existing account
+              inicia sesión en tu cuenta existente
             </Link>
           </p>
         </div>
@@ -68,7 +68,7 @@ const Register: React.FC = () => {
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="relative">
               <label htmlFor="name" className="sr-only">
-                Full Name
+                Nombre completo
               </label>
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -80,12 +80,12 @@ const Register: React.FC = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Full Name"
+                placeholder="Nombre completo"
               />
             </div>
             <div className="relative">
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                Correo electrónico
               </label>
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -97,12 +97,12 @@ const Register: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Correo electrónico"
               />
             </div>
             <div className="relative">
               <label htmlFor="password" className="sr-only">
-                Password
+                Contraseña
               </label>
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -114,12 +114,12 @@ const Register: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                placeholder="Contraseña"
               />
             </div>
             <div className="relative">
               <label htmlFor="confirm-password" className="sr-only">
-                Confirm Password
+                Confirmar contraseña
               </label>
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -131,13 +131,13 @@ const Register: React.FC = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm Password"
+                placeholder="Confirmar contraseña"
               />
             </div>
           </div>
 
           <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Tipo de cuenta</label>
             <div className="flex space-x-4">
               <div className="flex items-center">
                 <input
@@ -149,7 +149,7 @@ const Register: React.FC = () => {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                 />
                 <label htmlFor="student" className="ml-2 block text-sm text-gray-900">
-                  Student
+                  Estudiante
                 </label>
               </div>
               <div className="flex items-center">
@@ -162,7 +162,7 @@ const Register: React.FC = () => {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                 />
                 <label htmlFor="admin" className="ml-2 block text-sm text-gray-900">
-                  Teacher/Admin
+                  Profesor/Administrador
                 </label>
               </div>
             </div>
@@ -177,7 +177,7 @@ const Register: React.FC = () => {
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
-                'Create Account'
+                'Crear cuenta'
               )}
             </button>
           </div>

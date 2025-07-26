@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, UserPlus, Edit, Trash2, Check, X } from 'lucide-react';
 
-// Types
+// Tipos
 interface User {
   _id: string;
   name: string;
@@ -20,11 +20,11 @@ const UserManagement: React.FC = () => {
   const [userToDelete, setUserToDelete] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulating API call
+    // Simulando llamada a la API
     const fetchUsers = async () => {
       try {
         setTimeout(() => {
-          // Mock users data
+          // Datos de usuarios simulados
           const mockUsers: User[] = [
             {
               _id: '1',
@@ -70,7 +70,7 @@ const UserManagement: React.FC = () => {
           setLoading(false);
         }, 1000);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error al obtener usuarios:', error);
         setLoading(false);
       }
     };
@@ -103,7 +103,7 @@ const UserManagement: React.FC = () => {
 
   const handleDeleteUser = () => {
     if (userToDelete) {
-      // In a real app, this would be an API call
+      // En una aplicación real, esto sería una llamada a la API
       setUsers(prevUsers => prevUsers.filter(user => user._id !== userToDelete));
       setShowDeleteModal(false);
       setUserToDelete(null);
@@ -114,16 +114,16 @@ const UserManagement: React.FC = () => {
     <div className="bg-gray-50 min-h-[calc(100vh-8rem)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Gestión de Usuarios</h1>
           <button
             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             <UserPlus className="h-4 w-4 mr-2" />
-            Add New User
+            Añadir Nuevo Usuario
           </button>
         </div>
 
-        {/* Search and Filter */}
+        {/* Búsqueda y Filtro */}
         <div className="flex flex-col md:flex-row gap-4 mb-6">
           <div className="relative flex-grow">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -134,7 +134,7 @@ const UserManagement: React.FC = () => {
               value={searchTerm}
               onChange={handleSearch}
               className="block w-full pl-10 pr-12 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Search users by name or email"
+              placeholder="Buscar usuarios por nombre o correo electrónico"
             />
           </div>
           <div className="relative inline-flex">
@@ -146,9 +146,9 @@ const UserManagement: React.FC = () => {
               onChange={handleFilterChange}
               className="block w-full md:w-48 pl-10 pr-10 py-2 border border-gray-300 rounded-md leading-5 bg-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             >
-              <option value="all">All Roles</option>
-              <option value="student">Students</option>
-              <option value="admin">Administrators</option>
+              <option value="all">Todos los Roles</option>
+              <option value="student">Estudiantes</option>
+              <option value="admin">Administradores</option>
             </select>
           </div>
         </div>
@@ -163,22 +163,22 @@ const UserManagement: React.FC = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Name
+                    Nombre
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Email
+                    Correo Electrónico
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Role
+                    Rol
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Registered
+                    Registrado
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Courses
+                    Cursos
                   </th>
                   <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
+                    Acciones
                   </th>
                 </tr>
               </thead>
@@ -198,7 +198,7 @@ const UserManagement: React.FC = () => {
                             ? 'bg-purple-100 text-purple-800' 
                             : 'bg-green-100 text-green-800'
                         }`}>
-                          {user.role === 'admin' ? 'Administrator' : 'Student'}
+                          {user.role === 'admin' ? 'Administrador' : 'Estudiante'}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -227,7 +227,7 @@ const UserManagement: React.FC = () => {
                 ) : (
                   <tr>
                     <td colSpan={6} className="px-6 py-4 whitespace-nowrap text-center text-gray-500">
-                      No users found
+                      No se encontraron usuarios
                     </td>
                   </tr>
                 )}
@@ -237,7 +237,7 @@ const UserManagement: React.FC = () => {
         )}
       </div>
 
-      {/* Delete Confirmation Modal */}
+      {/* Modal de Confirmación de Eliminación */}
       {showDeleteModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -252,10 +252,10 @@ const UserManagement: React.FC = () => {
                     <Trash2 className="h-6 w-6 text-red-600" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">Delete User</h3>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Eliminar Usuario</h3>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to delete this user? This action cannot be undone.
+                        ¿Estás seguro de que quieres eliminar este usuario? Esta acción no se puede deshacer.
                       </p>
                     </div>
                   </div>
@@ -268,7 +268,7 @@ const UserManagement: React.FC = () => {
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   <Check className="h-4 w-4 mr-2" />
-                  Delete
+                  Eliminar
                 </button>
                 <button
                   type="button"
@@ -276,7 +276,7 @@ const UserManagement: React.FC = () => {
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                 >
                   <X className="h-4 w-4 mr-2" />
-                  Cancel
+                  Cancelar
                 </button>
               </div>
             </div>

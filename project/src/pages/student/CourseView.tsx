@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { BookOpen, FileText, Clock, Calendar, Award } from 'lucide-react';
 
-// Types
+// Tipos
 interface Course {
   _id: string;
   title: string;
@@ -32,46 +32,46 @@ const CourseView: React.FC = () => {
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulating API call to get course details
+    // Simulando llamada a la API para obtener detalles del curso
     const fetchCourse = async () => {
       try {
-        // Mock data
+        // Datos simulados
         setTimeout(() => {
           const mockCourse: Course = {
             _id: id || '1',
-            title: 'Introduction to Mathematics',
-            description: 'This course provides a comprehensive introduction to fundamental mathematical concepts including algebra, geometry, and calculus. Students will develop problem-solving skills and gain a solid foundation in mathematical reasoning.',
+            title: 'Introducción a las Matemáticas',
+            description: 'Este curso proporciona una introducción completa a los conceptos matemáticos fundamentales, incluyendo álgebra, geometría y cálculo. Los estudiantes desarrollarán habilidades para resolver problemas y obtendrán una base sólida en el razonamiento matemático.',
             instructor: 'Dr. Alan Smith',
             image: 'https://images.pexels.com/photos/6238297/pexels-photo-6238297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
             modules: [
               {
                 _id: 'm1',
-                title: 'Module 1: Algebra Fundamentals',
+                title: 'Módulo 1: Fundamentos de Álgebra',
                 lessons: [
-                  { _id: 'l1', title: 'Variables and Expressions', type: 'video', completed: true },
-                  { _id: 'l2', title: 'Solving Equations', type: 'video', completed: true },
-                  { _id: 'l3', title: 'Assignment: Equation Practice', type: 'assignment', completed: true },
-                  { _id: 'l4', title: 'Quiz: Algebra Basics', type: 'quiz', completed: false }
+                  { _id: 'l1', title: 'Variables y Expresiones', type: 'video', completed: true },
+                  { _id: 'l2', title: 'Resolución de Ecuaciones', type: 'video', completed: true },
+                  { _id: 'l3', title: 'Tarea: Práctica de Ecuaciones', type: 'assignment', completed: true },
+                  { _id: 'l4', title: 'Cuestionario: Conceptos Básicos de Álgebra', type: 'quiz', completed: false }
                 ]
               },
               {
                 _id: 'm2',
-                title: 'Module 2: Geometry Concepts',
+                title: 'Módulo 2: Conceptos de Geometría',
                 lessons: [
-                  { _id: 'l5', title: 'Points, Lines, and Planes', type: 'video', completed: true },
-                  { _id: 'l6', title: 'Triangles and Polygons', type: 'reading', completed: false },
-                  { _id: 'l7', title: 'Assignment: Geometric Proofs', type: 'assignment', completed: false },
-                  { _id: 'l8', title: 'Quiz: Geometry Basics', type: 'quiz', completed: false }
+                  { _id: 'l5', title: 'Puntos, Líneas y Planos', type: 'video', completed: true },
+                  { _id: 'l6', title: 'Triángulos y Polígonos', type: 'reading', completed: false },
+                  { _id: 'l7', title: 'Tarea: Demostraciones Geométricas', type: 'assignment', completed: false },
+                  { _id: 'l8', title: 'Cuestionario: Conceptos Básicos de Geometría', type: 'quiz', completed: false }
                 ]
               },
               {
                 _id: 'm3',
-                title: 'Module 3: Introduction to Calculus',
+                title: 'Módulo 3: Introducción al Cálculo',
                 lessons: [
-                  { _id: 'l9', title: 'Limits and Continuity', type: 'video', completed: false },
-                  { _id: 'l10', title: 'Derivatives', type: 'video', completed: false },
-                  { _id: 'l11', title: 'Assignment: Derivative Practice', type: 'assignment', completed: false },
-                  { _id: 'l12', title: 'Final Exam', type: 'quiz', completed: false }
+                  { _id: 'l9', title: 'Límites y Continuidad', type: 'video', completed: false },
+                  { _id: 'l10', title: 'Derivadas', type: 'video', completed: false },
+                  { _id: 'l11', title: 'Tarea: Práctica de Derivadas', type: 'assignment', completed: false },
+                  { _id: 'l12', title: 'Examen Final', type: 'quiz', completed: false }
                 ]
               }
             ]
@@ -82,7 +82,7 @@ const CourseView: React.FC = () => {
           setLoading(false);
         }, 1000);
       } catch (error) {
-        console.error('Error fetching course:', error);
+        console.error('Error al obtener el curso:', error);
         setLoading(false);
       }
     };
@@ -134,13 +134,13 @@ const CourseView: React.FC = () => {
   if (!course) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[calc(100vh-8rem)] px-4">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Course Not Found</h2>
-        <p className="text-gray-600 mb-6">The course you're looking for doesn't exist or has been removed.</p>
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Curso No Encontrado</h2>
+        <p className="text-gray-600 mb-6">El curso que estás buscando no existe o ha sido eliminado.</p>
         <Link
           to="/dashboard"
           className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
         >
-          Back to Dashboard
+          Volver al Panel
         </Link>
       </div>
     );
@@ -150,7 +150,7 @@ const CourseView: React.FC = () => {
 
   return (
     <div className="bg-gray-50 min-h-[calc(100vh-8rem)]">
-      {/* Course Header */}
+      {/* Encabezado del Curso */}
       <div className="relative">
         <div className="h-64 w-full bg-cover bg-center" style={{ backgroundImage: `url(${course.image})` }}>
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-indigo-900/80"></div>
@@ -169,21 +169,21 @@ const CourseView: React.FC = () => {
                     style={{ width: `${progress}%` }}
                   ></div>
                 </div>
-                <span className="ml-2 text-sm font-medium text-gray-700">{progress}% completed</span>
+                <span className="ml-2 text-sm font-medium text-gray-700">{progress}% completado</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Course Content */}
+      {/* Contenido del Curso */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-          {/* Course Modules */}
+          {/* Módulos del Curso */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-md overflow-hidden sticky top-8">
               <div className="p-4 bg-blue-600 text-white">
-                <h2 className="text-lg font-semibold">Course Modules</h2>
+                <h2 className="text-lg font-semibold">Módulos del Curso</h2>
               </div>
               <div className="p-4">
                 <ul className="space-y-2">
@@ -206,12 +206,12 @@ const CourseView: React.FC = () => {
             </div>
           </div>
 
-          {/* Module Lessons */}
+          {/* Lecciones del Módulo */}
           <div className="lg:col-span-2 mt-8 lg:mt-0">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="p-4 border-b">
                 <h2 className="text-xl font-semibold text-gray-800">
-                  {course.modules.find(m => m._id === activeModuleId)?.title || 'Module Content'}
+                  {course.modules.find(m => m._id === activeModuleId)?.title || 'Contenido del Módulo'}
                 </h2>
               </div>
               <div className="p-4">
@@ -237,11 +237,11 @@ const CourseView: React.FC = () => {
                           <div className="flex-shrink-0 ml-3">
                             {lesson.completed ? (
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                Completed
+                                Completado
                               </span>
                             ) : (
                               <button className="text-sm text-blue-600 hover:text-blue-800">
-                                Start
+                                Empezar
                               </button>
                             )}
                           </div>

@@ -1,8 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-// Types
+// Tipos
 type User = {
   _id: string;
   name: string;
@@ -29,71 +28,68 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  // Check if user is already logged in
-  useEffect(() => {
-    const checkLoggedIn = async () => {
-      try {
-        const res = await axios.get('/api/auth/me', { withCredentials: true });
-        if (res.data) {
-          setUser(res.data);
-        }
-      } catch (err) {
-        // User is not logged in
-        console.log('User not authenticated');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Datos de usuario simulados
+  const mockUser: User = {
+    _id: '1',
+    name: 'Usuario de Prueba',
+    email: 'test@example.com',
+    role: 'student',
+  };
 
-    checkLoggedIn();
+  // Comprobar si el usuario ya ha iniciado sesión
+  useEffect(() => {
+    // Simular la comprobación de un usuario que ha iniciado sesión
+    const sessionUser = sessionStorage.getItem('user');
+    if (sessionUser) {
+      setUser(JSON.parse(sessionUser));
+    }
+    setLoading(false);
   }, []);
 
-  // Login function
+  // Función de inicio de sesión
   const login = async (email: string, password: string) => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const res = await axios.post('/api/auth/login', { email, password }, { withCredentials: true });
-      setUser(res.data.user);
-      
-      // Redirect based on role
-      if (res.data.user.role === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/dashboard');
-      }
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
-    } finally {
-      setLoading(false);
+    setLoading(true);
+    setError(null);
+
+    // Simular llamada a la API
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    if (email === 'admin@example.com' && password === 'password') {
+      const adminUser = { ...mockUser, role: 'admin' as 'admin', name: 'Usuario Administrador' };
+      setUser(adminUser);
+      sessionStorage.setItem('user', JSON.stringify(adminUser));
+      navigate('/admin');
+    } else if (email === 'student@example.com' && password === 'password') {
+      const studentUser = { ...mockUser, role: 'student' as 'student', name: 'Usuario Estudiante' };
+      setUser(studentUser);
+      sessionStorage.setItem('user', JSON.stringify(studentUser));
+      navigate('/dashboard');
+    } else {
+      setError('Correo electrónico o contraseña no válidos');
     }
+
+    setLoading(false);
   };
 
-  // Register function
+  // Función de registro
   const register = async (name: string, email: string, password: string, role: 'student' | 'admin') => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      await axios.post('/api/auth/register', { name, email, password, role });
-      navigate('/login');
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
+    setLoading(true);
+    setError(null);
+
+    // Simular llamada a la API
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    console.log('Registrado:', { name, email, password, role });
+    navigate('/login');
+
+    setLoading(false);
   };
 
-  // Logout function
-  const logout = async () => {
-    try {
-      await axios.post('/api/auth/logout', {}, { withCredentials: true });
-      setUser(null);
-      navigate('/login');
-    } catch (err) {
-      console.error('Logout error:', err);
-    }
+  // Función de cierre de sesión
+  const logout = () => {
+    setUser(null);
+    sessionStorage.removeItem('user');
+    navigate('/login');
   };
 
   const isAuthenticated = !!user;
@@ -120,7 +116,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuth debe ser utilizado dentro de un AuthProvider');
   }
   return context;
 };

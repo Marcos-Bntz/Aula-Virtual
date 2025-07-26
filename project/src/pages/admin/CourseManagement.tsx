@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Edit, Trash2, Search, Check, X } from 'lucide-react';
 
-// Types
+// Tipos
 interface Course {
   _id: string;
   title: string;
@@ -28,16 +28,16 @@ const CourseManagement: React.FC = () => {
   });
 
   useEffect(() => {
-    // Simulating API call
+    // Simulando llamada a la API
     const fetchCourses = async () => {
       try {
         setTimeout(() => {
-          // Mock courses data
+          // Datos de cursos simulados
           const mockCourses: Course[] = [
             {
               _id: '1',
-              title: 'Introduction to Mathematics',
-              description: 'Fundamental concepts of algebra, geometry, and calculus',
+              title: 'Introducción a las Matemáticas',
+              description: 'Conceptos fundamentales de álgebra, geometría y cálculo',
               instructor: 'Dr. Alan Smith',
               image: 'https://images.pexels.com/photos/6238297/pexels-photo-6238297.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
               students: 42,
@@ -45,8 +45,8 @@ const CourseManagement: React.FC = () => {
             },
             {
               _id: '2',
-              title: 'English Literature',
-              description: 'Classic and contemporary literary works and analysis',
+              title: 'Literatura Inglesa',
+              description: 'Obras y análisis literarios clásicos y contemporáneos',
               instructor: 'Prof. Emily Johnson',
               image: 'https://images.pexels.com/photos/1448709/pexels-photo-1448709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
               students: 38,
@@ -54,8 +54,8 @@ const CourseManagement: React.FC = () => {
             },
             {
               _id: '3',
-              title: 'Introduction to Computer Science',
-              description: 'Programming fundamentals and computational thinking',
+              title: 'Introducción a la Informática',
+              description: 'Fundamentos de programación y pensamiento computacional',
               instructor: 'Dr. Robert Chen',
               image: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
               students: 55,
@@ -63,8 +63,8 @@ const CourseManagement: React.FC = () => {
             },
             {
               _id: '4',
-              title: 'Biology 101',
-              description: 'Study of living organisms and their interactions',
+              title: 'Biología 101',
+              description: 'Estudio de los organismos vivos y sus interacciones',
               instructor: 'Dr. Sarah Wilson',
               image: 'https://images.pexels.com/photos/2280549/pexels-photo-2280549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
               students: 30,
@@ -76,7 +76,7 @@ const CourseManagement: React.FC = () => {
           setLoading(false);
         }, 1000);
       } catch (error) {
-        console.error('Error fetching courses:', error);
+        console.error('Error al obtener cursos:', error);
         setLoading(false);
       }
     };
@@ -101,7 +101,7 @@ const CourseManagement: React.FC = () => {
 
   const handleDeleteCourse = () => {
     if (courseToDelete) {
-      // In a real app, this would be an API call
+      // En una aplicación real, esto sería una llamada a la API
       setCourses(prevCourses => prevCourses.filter(course => course._id !== courseToDelete));
       setShowDeleteModal(false);
       setCourseToDelete(null);
@@ -116,7 +116,7 @@ const CourseManagement: React.FC = () => {
   const handleCreateCourse = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // In a real app, this would be an API call
+    // En una aplicación real, esto sería una llamada a la API
     const newCourseData: Course = {
       _id: (courses.length + 1).toString(),
       ...newCourse,
@@ -138,17 +138,17 @@ const CourseManagement: React.FC = () => {
     <div className="bg-gray-50 min-h-[calc(100vh-8rem)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Course Management</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Gestión de Cursos</h1>
           <button
             onClick={() => setShowCreateModal(true)}
             className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add New Course
+            Añadir Nuevo Curso
           </button>
         </div>
 
-        {/* Search Bar */}
+        {/* Barra de Búsqueda */}
         <div className="mb-6">
           <div className="relative rounded-md shadow-sm">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -159,7 +159,7 @@ const CourseManagement: React.FC = () => {
               value={searchTerm}
               onChange={handleSearch}
               className="block w-full pl-10 pr-12 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Search courses by title, description, or instructor"
+              placeholder="Buscar cursos por título, descripción o instructor"
             />
           </div>
         </div>
@@ -174,19 +174,19 @@ const CourseManagement: React.FC = () => {
               <thead className="bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Course
+                    Curso
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Instructor
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Students
+                    Estudiantes
                   </th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Modules
+                    Módulos
                   </th>
                   <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
+                    Acciones
                   </th>
                 </tr>
               </thead>
@@ -236,7 +236,7 @@ const CourseManagement: React.FC = () => {
                 ) : (
                   <tr>
                     <td colSpan={5} className="px-6 py-4 whitespace-nowrap text-center text-gray-500">
-                      No courses found
+                      No se encontraron cursos
                     </td>
                   </tr>
                 )}
@@ -246,7 +246,7 @@ const CourseManagement: React.FC = () => {
         )}
       </div>
 
-      {/* Delete Confirmation Modal */}
+      {/* Modal de Confirmación de Eliminación */}
       {showDeleteModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -261,10 +261,10 @@ const CourseManagement: React.FC = () => {
                     <Trash2 className="h-6 w-6 text-red-600" />
                   </div>
                   <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900">Delete Course</h3>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Eliminar Curso</h3>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
-                        Are you sure you want to delete this course? This action cannot be undone.
+                        ¿Estás seguro de que quieres eliminar este curso? Esta acción no se puede deshacer.
                       </p>
                     </div>
                   </div>
@@ -276,14 +276,14 @@ const CourseManagement: React.FC = () => {
                   onClick={handleDeleteCourse}
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
                 >
-                  Delete
+                  Eliminar
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowDeleteModal(false)}
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                 >
-                  Cancel
+                  Cancelar
                 </button>
               </div>
             </div>
@@ -291,7 +291,7 @@ const CourseManagement: React.FC = () => {
         </div>
       )}
 
-      {/* Create Course Modal */}
+      {/* Modal de Creación de Curso */}
       {showCreateModal && (
         <div className="fixed z-10 inset-0 overflow-y-auto">
           <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -303,11 +303,11 @@ const CourseManagement: React.FC = () => {
               <form onSubmit={handleCreateCourse}>
                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                   <div className="mb-4">
-                    <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Create New Course</h3>
+                    <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">Crear Nuevo Curso</h3>
                     <div className="space-y-4">
                       <div>
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-                          Course Title
+                          Título del Curso
                         </label>
                         <input
                           type="text"
@@ -317,12 +317,12 @@ const CourseManagement: React.FC = () => {
                           onChange={handleInputChange}
                           required
                           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                          placeholder="Enter course title"
+                          placeholder="Introduce el título del curso"
                         />
                       </div>
                       <div>
                         <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-                          Description
+                          Descripción
                         </label>
                         <textarea
                           name="description"
@@ -332,12 +332,12 @@ const CourseManagement: React.FC = () => {
                           required
                           rows={3}
                           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                          placeholder="Enter course description"
+                          placeholder="Introduce la descripción del curso"
                         ></textarea>
                       </div>
                       <div>
                         <label htmlFor="instructor" className="block text-sm font-medium text-gray-700">
-                          Instructor Name
+                          Nombre del Instructor
                         </label>
                         <input
                           type="text"
@@ -347,12 +347,12 @@ const CourseManagement: React.FC = () => {
                           onChange={handleInputChange}
                           required
                           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                          placeholder="Enter instructor name"
+                          placeholder="Introduce el nombre del instructor"
                         />
                       </div>
                       <div>
                         <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-                          Image URL
+                          URL de la Imagen
                         </label>
                         <input
                           type="text"
@@ -361,7 +361,7 @@ const CourseManagement: React.FC = () => {
                           value={newCourse.image}
                           onChange={handleInputChange}
                           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                          placeholder="Enter image URL"
+                          placeholder="Introduce la URL de la imagen"
                         />
                       </div>
                     </div>
@@ -373,7 +373,7 @@ const CourseManagement: React.FC = () => {
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     <Check className="h-4 w-4 mr-2" />
-                    Create Course
+                    Crear Curso
                   </button>
                   <button
                     type="button"
@@ -381,7 +381,7 @@ const CourseManagement: React.FC = () => {
                     className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                   >
                     <X className="h-4 w-4 mr-2" />
-                    Cancel
+                    Cancelar
                   </button>
                 </div>
               </form>

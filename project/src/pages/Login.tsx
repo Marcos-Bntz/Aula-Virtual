@@ -13,16 +13,16 @@ const Login: React.FC = () => {
     e.preventDefault();
     setFormError('');
     
-    // Basic validation
+    // Validación básica
     if (!email || !password) {
-      setFormError('Please fill in all fields');
+      setFormError('Por favor, rellene todos los campos');
       return;
     }
 
     try {
       await login(email, password);
     } catch (err) {
-      // Error is handled in AuthContext
+      // El error se maneja en AuthContext
     }
   };
 
@@ -33,11 +33,11 @@ const Login: React.FC = () => {
           <div className="flex justify-center">
             <BookOpen className="h-12 w-12 text-blue-600" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Inicia sesión en tu cuenta</h2>
           <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
+            O{' '}
             <Link to="/register" className="font-medium text-blue-600 hover:text-blue-500">
-              create a new account
+              crea una nueva cuenta
             </Link>
           </p>
         </div>
@@ -55,7 +55,7 @@ const Login: React.FC = () => {
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="relative">
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                Correo electrónico
               </label>
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -67,12 +67,12 @@ const Login: React.FC = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Correo electrónico"
               />
             </div>
             <div className="relative">
               <label htmlFor="password" className="sr-only">
-                Password
+                Contraseña
               </label>
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -84,7 +84,7 @@ const Login: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                placeholder="Contraseña"
               />
             </div>
           </div>
@@ -98,13 +98,13 @@ const Login: React.FC = () => {
                 className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
               />
               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-                Remember me
+                Recuérdame
               </label>
             </div>
 
             <div className="text-sm">
               <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-                Forgot your password?
+                ¿Olvidaste tu contraseña?
               </a>
             </div>
           </div>
@@ -118,7 +118,7 @@ const Login: React.FC = () => {
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
-                'Sign in'
+                'Iniciar sesión'
               )}
             </button>
           </div>
