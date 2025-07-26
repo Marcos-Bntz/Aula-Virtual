@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLanguage } from '../context/LanguageContext';
 import { BookOpen, User, Mail, Lock, AlertCircle } from 'lucide-react';
 
 const Register: React.FC = () => {
@@ -11,24 +12,24 @@ const Register: React.FC = () => {
   const [role, setRole] = useState<'student' | 'admin'>('student');
   const [formError, setFormError] = useState('');
   const { register, loading, error } = useAuth();
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError('');
     
-    // Basic validation
     if (!name || !email || !password || !confirmPassword) {
-      setFormError('Please fill in all fields');
+      setFormError(t('fillAllFields'));
       return;
     }
 
     if (password !== confirmPassword) {
-      setFormError('Passwords do not match');
+      setFormError(t('passwordsDoNotMatch'));
       return;
     }
 
     if (password.length < 6) {
-      setFormError('Password must be at least 6 characters');
+      setFormError(t('passwordTooShort'));
       return;
     }
 
@@ -40,26 +41,26 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+    <div className="min-h-[calc(100vh-8rem)] flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
         <div className="text-center">
           <div className="flex justify-center">
-            <BookOpen className="h-12 w-12 text-blue-600" />
+            <BookOpen className="h-12 w-12 text-blue-600 dark:text-blue-400" />
           </div>
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">Create a new account</h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Or{' '}
-            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
-              sign in to your existing account
+          <h2 className="mt-6 text-3xl font-extrabold text-gray-900 dark:text-white">{t('createAnAccount')}</h2>
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {t('or')}{' '}
+            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+              {t('signInToExistingAccount')}
             </Link>
           </p>
         </div>
         
         {(error || formError) && (
-          <div className="bg-red-50 border-l-4 border-red-500 p-4">
+          <div className="bg-red-50 dark:bg-red-900 border-l-4 border-red-500 dark:border-red-400 p-4">
             <div className="flex items-center">
-              <AlertCircle className="h-5 w-5 text-red-500 mr-2" />
-              <p className="text-sm text-red-700">{error || formError}</p>
+              <AlertCircle className="h-5 w-5 text-red-500 dark:text-red-400 mr-2" />
+              <p className="text-sm text-red-700 dark:text-red-200">{error || formError}</p>
             </div>
           </div>
         )}
@@ -68,7 +69,7 @@ const Register: React.FC = () => {
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="relative">
               <label htmlFor="name" className="sr-only">
-                Full Name
+                {t('fullName')}
               </label>
               <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -79,13 +80,13 @@ const Register: React.FC = () => {
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Full Name"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm"
+                placeholder={t('fullName')}
               />
             </div>
             <div className="relative">
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                {t('emailAddress')}
               </label>
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -96,13 +97,13 @@ const Register: React.FC = () => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm"
+                placeholder={t('emailAddress')}
               />
             </div>
             <div className="relative">
               <label htmlFor="password" className="sr-only">
-                Password
+                {t('password')}
               </label>
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -113,13 +114,13 @@ const Register: React.FC = () => {
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm"
+                placeholder={t('password')}
               />
             </div>
             <div className="relative">
               <label htmlFor="confirm-password" className="sr-only">
-                Confirm Password
+                {t('confirmPassword')}
               </label>
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
               <input
@@ -130,14 +131,14 @@ const Register: React.FC = () => {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm Password"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 pl-10 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 focus:z-10 sm:text-sm"
+                placeholder={t('confirmPassword')}
               />
             </div>
           </div>
 
           <div className="mt-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('accountType')}</label>
             <div className="flex space-x-4">
               <div className="flex items-center">
                 <input
@@ -148,8 +149,8 @@ const Register: React.FC = () => {
                   onChange={() => setRole('student')}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                 />
-                <label htmlFor="student" className="ml-2 block text-sm text-gray-900">
-                  Student
+                <label htmlFor="student" className="ml-2 block text-sm text-gray-900 dark:text-gray-300">
+                  {t('student')}
                 </label>
               </div>
               <div className="flex items-center">
@@ -161,8 +162,8 @@ const Register: React.FC = () => {
                   onChange={() => setRole('admin')}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                 />
-                <label htmlFor="admin" className="ml-2 block text-sm text-gray-900">
-                  Teacher/Admin
+                <label htmlFor="admin" className="ml-2 block text-sm text-gray-900 dark:text-gray-300">
+                  {t('teacherAdmin')}
                 </label>
               </div>
             </div>
@@ -177,7 +178,7 @@ const Register: React.FC = () => {
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
               ) : (
-                'Create Account'
+                t('createAccount')
               )}
             </button>
           </div>
