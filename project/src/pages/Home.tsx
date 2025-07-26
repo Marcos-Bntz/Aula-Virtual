@@ -1,32 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Users, Award, Clock } from 'lucide-react';
+import { BookOpen, Users, Award } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
           <div className="md:flex md:items-center md:justify-between">
             <div className="md:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Transform Your Learning Experience
+                {t('heroTitle')}
               </h1>
               <p className="text-xl mb-8 text-blue-100">
-                A comprehensive virtual classroom platform designed for students and educators to connect, learn, and grow.
+                {t('heroSubtitle')}
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link to="/register" className="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50">
-                  Get Started
+                  {t('getStarted')}
                 </Link>
                 <Link to="/login" className="inline-flex justify-center items-center px-6 py-3 border border-white text-base font-medium rounded-md text-white hover:bg-blue-800">
-                  Sign In
+                  {t('signIn')}
                 </Link>
               </div>
             </div>
             <div className="hidden md:block md:w-1/2">
-              {/* Placeholder for image or illustration */}
               <div className="flex justify-center">
                 <BookOpen className="h-64 w-64 text-white opacity-75" />
               </div>
@@ -36,43 +38,43 @@ const Home: React.FC = () => {
       </div>
 
       {/* Features Section */}
-      <div className="py-16 bg-gray-50">
+      <div className="py-16 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose EduConnect?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Our platform offers a comprehensive set of tools designed to enhance the learning experience for both students and educators.
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">{t('featuresTitle')}</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              {t('featuresSubtitle')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-              <div className="text-blue-600 mb-4">
+            <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md transition-transform hover:scale-105">
+              <div className="text-blue-600 dark:text-blue-400 mb-4">
                 <BookOpen className="h-12 w-12" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Interactive Courses</h3>
-              <p className="text-gray-600">
-                Access a wide range of courses with interactive content, assignments, and assessments.
+              <h3 className="text-xl font-semibold mb-2 dark:text-white">{t('feature1Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {t('feature1Text')}
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-              <div className="text-blue-600 mb-4">
+            <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md transition-transform hover:scale-105">
+              <div className="text-blue-600 dark:text-blue-400 mb-4">
                 <Users className="h-12 w-12" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Collaborative Learning</h3>
-              <p className="text-gray-600">
-                Connect with instructors and peers to enhance your learning experience through collaboration.
+              <h3 className="text-xl font-semibold mb-2 dark:text-white">{t('feature2Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {t('feature2Text')}
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-lg shadow-md transition-transform hover:scale-105">
-              <div className="text-blue-600 mb-4">
+            <div className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md transition-transform hover:scale-105">
+              <div className="text-blue-600 dark:text-blue-400 mb-4">
                 <Award className="h-12 w-12" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Progress Tracking</h3>
-              <p className="text-gray-600">
-                Monitor your academic progress with detailed grade reports and performance analytics.
+              <h3 className="text-xl font-semibold mb-2 dark:text-white">{t('feature3Title')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {t('feature3Text')}
               </p>
             </div>
           </div>
@@ -82,12 +84,12 @@ const Home: React.FC = () => {
       {/* Call to Action */}
       <div className="bg-blue-600 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
+          <h2 className="text-3xl font-bold mb-4">{t('ctaTitle')}</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto">
-            Join thousands of students and educators who are already using EduConnect to transform their learning experience.
+            {t('ctaSubtitle')}
           </p>
           <Link to="/register" className="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-white hover:bg-blue-50">
-            Create Your Account
+            {t('createAccount')}
           </Link>
         </div>
       </div>
